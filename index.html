@@ -20,8 +20,10 @@
   h2 { font-family:Georgia,serif; font-size:1.6rem; margin:2.4em 0 .6em; }
   h3 { font-size:1.05rem; margin:0 0 .3em; }
   .lead { font-size:1.2rem; color:var(--grey); max-width:38em; }
-  .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; margin:2.4em 0; }
-  .shots img { width:100%; border:1px solid var(--line); border-radius:14px; background:#fff; }
+  .shots { display:grid; gap:28px; margin:2.4em 0; }
+  .shots figure { margin:0; }
+  .shots img { width:100%; display:block; border:1px solid var(--line); border-radius:14px; background:#fff; }
+  .shots figcaption { color:var(--grey); font-size:.95rem; margin-top:.6em; }
   .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
   .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
   .card p { margin:.2em 0 0; color:var(--grey); }
@@ -63,9 +65,21 @@ is fitted to the plan — with placement notes for every room and a report you c
 is on the way.</p>
 
 <div class="shots">
-  <img src="img/plan.png" alt="A floor plan with the nine flying star sectors fitted to the building">
-  <img src="img/room.png" alt="A room page showing where the bed and desk are placed">
-  <img src="img/report.png" alt="The project sheet, with the report ready to save">
+  <figure>
+    <img src="img/plan.png" alt="A floor plan with the nine flying star sectors fitted to the building, each carrying its mountain, water and sector star">
+    <figcaption>The nine sectors fitted to the building by hand. Each one carries its mountain star,
+    water star and sector star, worked out from the period and the entrance bearing.</figcaption>
+  </figure>
+  <figure>
+    <img src="img/room.png" alt="A room page: the door and windows marked, and the bed and desk placed on the plan">
+    <figcaption>A page for each room. Mark the door and the windows, place the bed, the desk, the
+    cooker and the seats, and note who uses the room.</figcaption>
+  </figure>
+  <figure>
+    <img src="img/report.png" alt="The project sheet listing the floor plan, the people and each room page, ready to save as a report">
+    <figcaption>The project sheet: every page in one place, in the order the report prints, ready to
+    review and hand to the client.</figcaption>
+  </figure>
 </div>
 
 <h2>How it works</h2>
