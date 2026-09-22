@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flying Stars Feng Shui — floor plan studies for consultants</title>
+<meta name="description" content="Turn a client's floor plan into a room-by-room flying star study: the chart fitted to the building, placement advice for every room, and a report ready to hand over.">
+<link rel="icon" href="img/icon.png">
+<style>
+  :root { --ink:#16181a; --red:#8c1d18; --grey:#5a605d; --line:#e7ded3; --bg:#f7efe7; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.65;
+         color:var(--ink); background:var(--bg); }
+  .wrap { max-width:940px; margin:0 auto; padding:0 24px; }
+  header { padding:28px 0; }
+  .brand { display:flex; align-items:center; gap:12px; font-weight:600; color:var(--red); font-size:1.1rem; }
+  .brand img { width:40px; height:40px; border-radius:9px; }
+  h1 { font-family:Georgia,serif; font-size:2.6rem; line-height:1.15; margin:.6em 0 .3em; }
+  h1 em { color:var(--red); }
+  h2 { font-family:Georgia,serif; font-size:1.6rem; margin:2.4em 0 .6em; }
+  h3 { font-size:1.05rem; margin:0 0 .3em; }
+  .lead { font-size:1.2rem; color:var(--grey); max-width:38em; }
+  .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; margin:2.4em 0; }
+  .shots img { width:100%; border:1px solid var(--line); border-radius:14px; background:#fff; }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
+  .card p { margin:.2em 0 0; color:var(--grey); }
+  .plans { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+  .price { font-family:Georgia,serif; font-size:1.9rem; margin:.1em 0; }
+  .price small { font-size:.9rem; color:var(--grey); font-family:inherit; }
+  ul { padding-left:1.1em; } li { margin:.25em 0; }
+  a { color:var(--red); }
+  .btn { display:inline-block; background:var(--red); color:#fff; text-decoration:none;
+         padding:12px 22px; border-radius:10px; font-weight:600; margin:6px 8px 6px 0; }
+  .btn.ghost { background:#fff; color:var(--red); border:1px solid var(--red); }
+  .note { color:var(--grey); font-size:.95rem; }
+  footer { border-top:1px solid var(--line); margin-top:3em; padding:2em 0 3em; color:var(--grey); font-size:.95rem; }
+  footer a { margin-right:18px; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#eef1f0; --grey:#9aa2a0; --line:#2c3138; --bg:#14161a; --red:#e07a70; }
+    .card, .shots img { background:#1b1e23; }
+    .btn { color:#14161a; } .btn.ghost { background:transparent; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand"><img src="img/icon.png" alt=""> Flying Stars Feng Shui</div>
+</header>
+
+<h1>A floor plan in,<br><em>a client report out</em></h1>
+<p class="lead">Flying Stars Feng Shui is a working tool for feng shui consultants. Upload a floor
+plan, set the building's period and the exact bearing its entrance faces, and the flying star chart
+is fitted to the plan — with placement notes for every room and a report you can hand to a client.</p>
+
+<p>
+  <a class="btn" href="https://khalhal76.github.io/flying-stars-app/">Open the web app</a>
+  <a class="btn ghost" href="#pricing">See the plans</a>
+</p>
+<p class="note">Works in any browser, and as an installed app on Windows. An iPhone and iPad version
+is on the way.</p>
+
+<div class="shots">
+  <img src="img/plan.png" alt="A floor plan with the nine flying star sectors fitted to the building">
+  <img src="img/room.png" alt="A room page showing where the bed and desk are placed">
+  <img src="img/report.png" alt="The project sheet, with the report ready to save">
+</div>
+
+<h2>How it works</h2>
+<div class="steps">
+  <div class="card">
+    <h3>1 · The plan</h3>
+    <p>Add a photo or a PDF of the floor plan. Enter the period the building was completed in and the
+    bearing of its entrance, in degrees. Fit the nine sectors to the walls by hand. The plan itself is
+    never altered.</p>
+  </div>
+  <div class="card">
+    <h3>2 · Room by room</h3>
+    <p>Give each room its own page. Mark the door and the windows, then place the furniture: the head
+    of the bed, the desk, the cooker, the seats at the table.</p>
+  </div>
+  <div class="card">
+    <h3>3 · The report</h3>
+    <p>Reword any line in your own language and save the finished report — the plan, the rooms and
+    your notes — ready to give to the client.</p>
+  </div>
+</div>
+
+<h2>Worked out, not invented</h2>
+<p>Every figure comes from the classical Xuan Kong flying star method. The bearing in degrees selects
+one of the twenty-four mountains, the completion date selects the period on the solar calendar, and
+the mountain, water and sector stars of all nine sectors follow from those two inputs. The same
+building, entered by any two consultants, produces the same chart.</p>
+
+<h2 id="pricing">Plans and prices</h2>
+<div class="plans">
+  <div class="card">
+    <h3>Free</h3>
+    <p class="price">$0</p>
+    <ul>
+      <li>The main floor plan</li>
+      <li>One room page</li>
+      <li>One resident</li>
+      <li>One report, kept as saved</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Pro</h3>
+    <p class="price">$19.99 <small>a month</small></p>
+    <p class="price">$99.99 <small>a year</small></p>
+    <ul>
+      <li>Every room and every resident</li>
+      <li>Furniture on the plan</li>
+      <li>The report in your own words</li>
+      <li>Unlimited reports</li>
+      <li>A library of projects</li>
+    </ul>
+  </div>
+</div>
+<p class="note">Prices in US dollars. Tax is added or included at checkout depending on where you
+are. A Pro subscription renews automatically at the price shown when you subscribe, until you cancel.
+You can cancel at any time from the upgrade screen inside the app, and Pro stays on until the end of
+the period you have paid for. Pro belongs to your account, so it works on every device you sign in to.</p>
+
+<h2 id="refunds">Refunds</h2>
+<p>Our order process for the web and Windows apps is conducted by our online reseller
+<strong>Paddle.com</strong>, which is the Merchant of Record for those orders and handles billing,
+tax and receipts. We never see your card details.</p>
+<p>Payments are not refundable for partly used periods, except where the law where you live gives you
+a right to a refund, or where something went wrong — for example being charged twice. To ask for a
+refund, use the link in your Paddle receipt email, visit
+<a href="https://paddle.net">paddle.net</a>, or email us from the address you sign in with and we
+will arrange it. Subscriptions bought inside the iPhone or iPad app are handled by Apple instead.</p>
+
+<h2>Contact</h2>
+<p>Flying Stars Feng Shui is made by Khaldoun Al Hallak, United Arab Emirates.<br>
+Questions, refunds or support: <a href="mailto:khaldoun.hallak@simplefoodsme.com">khaldoun.hallak@simplefoodsme.com</a></p>
+
+<footer>
+  <a href="terms.html">Terms of use</a>
+  <a href="privacy.html">Privacy policy</a>
+  <a href="#refunds">Refunds</a>
+  <a href="https://khalhal76.github.io/flying-stars-app/">Open the app</a>
+  <p>© 2026 Khaldoun Al Hallak</p>
+</footer>
+
+</div>
+</body>
+</html>
