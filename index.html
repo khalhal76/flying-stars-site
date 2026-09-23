@@ -36,9 +36,15 @@
          padding:12px 22px; border-radius:10px; font-weight:600; margin:6px 8px 6px 0; }
   .btn.ghost { background:#fff; color:var(--red); border:1px solid var(--red); }
   .note { color:var(--grey); font-size:.95rem; }
-  .steps-list { padding-left:1.4em; margin:.6em 0 0; }
-  .steps-list li { margin:.45em 0; padding-left:.3em; }
+  .steps-label { font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+                 color:var(--grey); margin:1.4em 0 .3em; }
+  /* Three steps to a column, numbered straight down the first and on into the second. */
+  .steps-list { display:grid; grid-template-rows:repeat(3, auto); grid-auto-flow:column;
+                column-gap:2.6em; font-size:.88rem; line-height:1.45;
+                padding-left:1.4em; margin:0 0 1.2em; max-width:48em; }
+  .steps-list li { margin:0 0 .5em; padding-left:.2em; }
   .steps-list li::marker { color:var(--red); font-weight:700; }
+  @media (max-width:560px) { .steps-list { grid-template-rows:none; grid-auto-flow:row; } }
   .scope { color:var(--grey); font-size:.8rem; line-height:1.5; max-width:46em; margin:1.2em 0 0;
            padding-left:10px; border-left:2px solid var(--line); }
   footer { border-top:1px solid var(--line); margin-top:3em; padding:2em 0 3em; color:var(--grey); font-size:.95rem; }
@@ -58,10 +64,17 @@
 </header>
 
 <h1>A floor plan in,<br><em>a room-by-room study out</em></h1>
-<p class="lead">Flying Stars Feng Shui is a working tool for feng shui consultants, and for anyone who
-wants to apply the classical method to their own home. Upload a floor plan, set the building's period
-and the exact bearing its entrance faces, and the flying star chart is fitted to the plan — with
-placement notes for every room and a report to hand to a client or keep for yourself.</p>
+<p class="lead">For feng shui consultants, and for anyone applying the classical method to their own home.</p>
+
+<div class="steps-label">How it works</div>
+<ol class="steps-list">
+  <li><strong>Face out.</strong> Stand inside the front door, looking out. Take the compass reading.</li>
+  <li><strong>Date the home.</strong> The year it was built or renovated sets the period.</li>
+  <li><strong>Upload the plan.</strong> Fit the nine sectors to its walls.</li>
+  <li><strong>Add the people.</strong> Birth dates give each person their best directions.</li>
+  <li><strong>Go room by room.</strong> Mark doors and windows. See where the bed, desk and cooker go.</li>
+  <li><strong>Save the report.</strong> Reword any line first.</li>
+</ol>
 
 <p>
   <a class="btn" href="https://khalhal76.github.io/flying-stars-app/">Open the web app</a>
@@ -87,16 +100,6 @@ is on the way.</p>
     review and hand to the client.</figcaption>
   </figure>
 </div>
-
-<h2>How it works</h2>
-<ol class="steps-list">
-  <li><strong>Face out.</strong> Stand inside the front door, looking out. Take the compass reading.</li>
-  <li><strong>Date the home.</strong> The year it was built or renovated sets the period.</li>
-  <li><strong>Upload the plan.</strong> Fit the nine sectors to its walls.</li>
-  <li><strong>Add the people.</strong> Birth dates give each person their best directions.</li>
-  <li><strong>Go room by room.</strong> Mark doors and windows. See where the bed, desk and cooker go.</li>
-  <li><strong>Save the report.</strong> Reword any line first.</li>
-</ol>
 
 <h2>Worked out, not invented</h2>
 <p>Every figure comes from the classical Xuan Kong flying star method. The bearing in degrees selects
