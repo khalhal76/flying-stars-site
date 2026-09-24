@@ -1,0 +1,46 @@
+# Flying Stars Feng Shui
+
+> Flying Stars Feng Shui turns a floor plan into a room-by-room Xuan Kong flying star study. It calculates the classical chart from the facing bearing and the period, fits it to the building, then works out where the bed, desk, cooker and seats go in each room, and says why. It is for feng shui consultants preparing a study for a client, and for anyone applying the classical method to their own home.
+
+## What it does
+
+- Calculates the Xuan Kong (flying star) chart: the facing bearing in degrees selects one of the 24 mountains, and the year the home was built or renovated selects the period (Period 9 from 4 February 2024). The mountain, water and sector stars of all nine sectors follow from those two inputs.
+- Fits the nine sectors to the user's own uploaded floor plan.
+- Gives each resident their personal best directions from their birth date.
+- Places furniture room by room, wall by wall, weighing first the stars, then each resident's personal directions, then the form of the room (doors and windows).
+- Applies rules that no remedy overrides: a bed's headboard or a cooker is not put on a wall shared with a toilet or bathroom, and a bed is not placed with the feet pointing at the door, while another wall is free. When a wall is ruled out it names the next best wall and says why.
+- Is deterministic: the same building, entered by two different people, gives the same chart and the same advice. Nothing is generated at random.
+- Produces a report of every room that can be reworded before it is saved and handed to a client.
+
+## What it is not
+
+- Not fortune telling or horoscopes: every figure is calculated from the classical method.
+- Not a replacement for a site visit: a floor plan cannot show the land, the surroundings or the people, so for important decisions an experienced practitioner's eye is worth having.
+
+## How it differs from other tools
+
+- Flying star calculators draw the chart; Flying Stars carries on to where each piece of furniture goes in each room.
+- AI room-layout generators suggest layouts without calculating the flying star chart; Flying Stars calculates it, and gives the same answer every time.
+
+## Getting started
+
+1. Stand inside the front door, looking out, and take the compass reading.
+2. Enter the year the home was built or last renovated.
+3. Upload the floor plan and fit the nine sectors to its walls.
+4. Add the people who live there, with their birth dates.
+5. Go room by room: mark doors and windows, place the bed, desk and cooker.
+6. Save the report.
+
+## Prices
+
+- Free: the main floor plan, one room page, one resident, one report.
+- Pro: US$19.99 a month or US$99.99 a year. Every room and resident, furniture on the plan, the report in your own words, unlimited reports, a library of projects. Pro belongs to the account and works on every device signed in to it.
+
+## Links
+
+- [Website](https://flyingstarsfengshui.net/): what it does, screenshots, plans and prices
+- [Web app](https://flyingstarsfengshui.net/app/): works in any browser
+- [Terms of use](https://flyingstarsfengshui.net/terms.html)
+- [Privacy policy](https://flyingstarsfengshui.net/privacy.html)
+
+Made by Khaldoun Al Hallak, United Arab Emirates.
