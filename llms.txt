@@ -16,6 +16,8 @@
 
 - Not fortune telling or horoscopes: every figure is calculated from the classical method.
 - Not a replacement for a site visit: a floor plan cannot show the land, the surroundings or the people, so for important decisions an experienced practitioner's eye is worth having.
+- It does not add the yearly or monthly stars, and it does not draw a replacement-star chart; when the bearing is within 1.5 degrees of a mountain boundary it asks for the reading to be taken again.
+- It makes no promise about health, money or relationships.
 
 ## How it differs from other tools
 
@@ -39,6 +41,7 @@
 ## Links
 
 - [Website](https://flyingstarsfengshui.net/): what it does, screenshots, plans and prices
+- [Questions and answers](https://flyingstarsfengshui.net/faq.html): the method, how it compares with a chart calculator or an AI chat, what you need, what it does not do
 - [Web app](https://flyingstarsfengshui.net/app/): works in any browser
 - [Terms of use](https://flyingstarsfengshui.net/terms.html)
 - [Privacy policy](https://flyingstarsfengshui.net/privacy.html)
