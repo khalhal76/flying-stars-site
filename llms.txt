@@ -43,6 +43,7 @@
 - [Website](https://flyingstarsfengshui.net/): what it does, screenshots, plans and prices
 - [Questions and answers](https://flyingstarsfengshui.net/faq.html): the method, how it compares with a chart calculator or an AI chat, what you need, what it does not do
 - [Web app](https://flyingstarsfengshui.net/app/): works in any browser
+- [On iPhone and iPad](https://flyingstarsfengshui.net/iphone.html): add the web app to the Home Screen from Safari
 - [Terms of use](https://flyingstarsfengshui.net/terms.html)
 - [Privacy policy](https://flyingstarsfengshui.net/privacy.html)
 

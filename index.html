@@ -107,6 +107,9 @@
          padding:12px 22px; border-radius:10px; font-weight:600; margin:6px 8px 6px 0; }
   .btn.ghost { background:#fff; color:var(--red); border:1px solid var(--red); }
   .note { color:var(--grey); font-size:.95rem; }
+  .ios-tip { background:#fff; border:1px solid var(--red); border-radius:12px; padding:12px 16px;
+             margin:.4em 0 1em; max-width:38em; }
+  .ios-tip[hidden] { display:none; }
   .steps-label { font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
                  color:var(--grey); margin:1.4em 0 .3em; }
   /* Three steps to a column, numbered straight down the first and on into the second. */
@@ -122,7 +125,7 @@
   footer a { margin-right:18px; }
   @media (prefers-color-scheme: dark) {
     :root { --ink:#eef1f0; --grey:#9aa2a0; --line:#2c3138; --bg:#14161a; --red:#e07a70; }
-    .card, .shots img { background:#1b1e23; }
+    .card, .shots img, .ios-tip { background:#1b1e23; }
     .btn { color:#14161a; } .btn.ghost { background:transparent; }
   }
 </style>
@@ -152,8 +155,19 @@
   <a class="btn" href="https://flyingstarsfengshui.net/app/">Open the web app</a>
   <a class="btn ghost" href="#pricing">See the plans</a>
 </p>
-<p class="note">Works in any browser, and as an installed app on Windows. An iPhone and iPad version
-is on the way.</p>
+<p class="ios-tip" id="ios-tip" hidden>On an iPhone or iPad? <a href="iphone.html">Add Flying Stars to
+your Home Screen</a> and it opens like any other app.</p>
+<p class="note">Works in any browser, and as an installed app on Windows. On iPhone and iPad,
+<a href="iphone.html">add it to your Home Screen</a> from Safari.</p>
+<script>
+  // Only iPhone and iPad visitors see the tip, and not once it is already installed.
+  // iPadOS reports itself as a Mac, so a touch screen is what gives it away.
+  (function () {
+    var ios = /iPhone|iPad|iPod/.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (ios && !navigator.standalone) document.getElementById('ios-tip').hidden = false;
+  })();
+</script>
 
 <div class="shots">
   <figure>
