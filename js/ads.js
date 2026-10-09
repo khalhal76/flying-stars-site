@@ -57,10 +57,22 @@
   gtag('js', new Date());
   gtag('config', TAG);
 
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + TAG;
-  document.head.appendChild(s);
+  // Google's library is the heaviest thing on the page (about 150 KB and 300 ms of
+  // main-thread work), so it loads once the page is up and the browser is idle.
+  // Everything above is already queued in dataLayer and is sent when it arrives;
+  // the ad click id stays in the address, so nothing is lost by waiting.
+  function load() {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + TAG;
+    document.head.appendChild(s);
+  }
+  function later() {
+    if ('requestIdleCallback' in window) window.requestIdleCallback(load, { timeout: 3000 });
+    else setTimeout(load, 1500);
+  }
+  if (document.readyState === 'complete') later();
+  else window.addEventListener('load', later);
 
   window.fsAds = {
     /** A new account, once. The caller makes sure it is new. */
