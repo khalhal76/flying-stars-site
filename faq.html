@@ -84,13 +84,44 @@
   }
 </style>
 <script src="/js/ads.js" async></script>
+<!-- nav-css -->
+<style>
+  /* Logo left, links, then the app button. On a phone the button sits beside the
+     logo and the links wrap onto their own row, so nothing is hidden off-screen. */
+  header.site { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; padding:18px 0 6px; }
+  header.site .brand { display:flex; align-items:center; gap:10px; font-weight:600; color:var(--red); font-size:1.05rem; text-decoration:none; margin-right:auto; }
+  header.site .brand img { width:36px; height:36px; border-radius:8px; }
+  nav.top { display:flex; flex-wrap:wrap; align-items:center; gap:2px; order:2; }
+  nav.top a { display:inline-block; padding:8px 10px; border-radius:8px; color:var(--ink); text-decoration:none; font-size:.95rem; white-space:nowrap; }
+  nav.top a:hover { background:rgba(140,29,24,.08); }
+  nav.top a[aria-current="page"] { color:var(--red); font-weight:600; }
+  header.site .go { order:3; display:inline-block; background:var(--red); color:#fff; font-weight:600; text-decoration:none; padding:8px 14px; border-radius:8px; white-space:nowrap; font-size:.95rem; }
+  @media (max-width:640px) {
+    header.site { gap:6px 8px; }
+    header.site .brand { font-size:.95rem; gap:8px; }
+    header.site .brand img { width:32px; height:32px; }
+    header.site .go { order:1; padding:7px 11px; font-size:.88rem; }
+    nav.top { order:2; width:100%; margin-left:-10px; }
+  }
+  @media (prefers-color-scheme: dark) { header.site .go { color:#14161a; } nav.top a:hover { background:rgba(224,122,112,.12); } }
+  footer a { display:inline-block; margin-right:18px; padding:8px 0; }
+</style>
+<!-- /nav-css -->
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <a class="brand" href="/"><img src="img/icon.png" alt=""> Flying Stars Feng Shui</a>
+<!-- nav -->
+<header class="site">
+  <a class="brand" href="/"><img src="/img/icon.png" width="36" height="36" alt=""> Flying Stars Feng Shui</a>
+  <nav class="top" aria-label="Main">
+    <a href="/guides/">Guides</a>
+    <a href="/kua-number-calculator/">Kua calculator</a>
+    <a href="/faq.html" aria-current="page">Questions</a>
+  </nav>
+  <a class="go" href="https://flyingstarsfengshui.net/app/">Open the app</a>
 </header>
+<!-- /nav -->
 
 <h1>Flying star feng shui: questions and answers</h1>
 <p class="lead">What a flying star chart is, how Flying Stars turns one into room-by-room advice,
@@ -163,16 +194,19 @@ Flying Stars does.</p>
 
 <p><a class="btn" href="https://flyingstarsfengshui.net/app/">Try it free in your browser</a></p>
 
+<!-- footer -->
 <footer>
   <a href="/">Home</a>
-  <a href="faq.html">Questions</a>
-  <a href="install.html">Install</a>
-  <a href="terms.html">Terms of use</a>
-  <a href="privacy.html">Privacy policy</a>
+  <a href="/guides/">Guides</a>
+  <a href="/faq.html">Questions</a>
+  <a href="/install.html">Install</a>
+  <a href="/terms.html">Terms of use</a>
+  <a href="/privacy.html">Privacy policy</a>
   <a href="/#refunds">Refunds</a>
   <a href="https://flyingstarsfengshui.net/app/">Open the app</a>
   <p>© 2026 Khaldoun Al Hallak</p>
 </footer>
+<!-- /footer -->
 
 </div>
 <!-- Cloudflare Web Analytics: cookieless visit counts and referrers, for this website only (never /app/). -->
