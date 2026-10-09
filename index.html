@@ -83,7 +83,7 @@
 }
 </script>
 <style>
-  :root { --ink:#16181a; --red:#8c1d18; --grey:#5a605d; --line:#e7ded3; --bg:#f7efe7; }
+  :root { --ink:#16181a; --red:#8c1d18; --grey:#5a605d; --line:#e7ded3; --bg:#f7efe7; --card:#fff; --tint:rgba(140,29,24,.08); }
   * { box-sizing: border-box; }
   body { margin:0; font-family:-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.65;
          color:var(--ink); background:var(--bg); }
@@ -109,7 +109,7 @@
   ul { padding-left:1.1em; } li { margin:.25em 0; }
   a { color:var(--red); }
   .btn { display:inline-block; background:var(--red); color:#fff; text-decoration:none;
-         padding:12px 22px; border-radius:10px; font-weight:600; margin:6px 8px 6px 0; }
+         padding:12px 24px; border-radius:999px; font-weight:600; margin:6px 8px 6px 0; }
   .btn.ghost { background:#fff; color:var(--red); border:1px solid var(--red); }
   .note { color:var(--grey); font-size:.95rem; }
   .ios-tip { background:#fff; border:1px solid var(--red); border-radius:12px; padding:12px 16px;
@@ -124,41 +124,119 @@
   .steps-list li { margin:0 0 .5em; padding-left:.2em; }
   .steps-list li::marker { color:var(--red); font-weight:700; }
   @media (max-width:560px) { .steps-list { grid-template-rows:none; grid-auto-flow:row; } }
+  /* ---- Pills and frames (9 Oct 2026) ---- */
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 .4em; padding:0; list-style:none; }
+  .pill { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px;
+          border:1px solid var(--line); background:var(--card); color:var(--ink); font-size:.85rem;
+          font-weight:600; line-height:1.3; text-decoration:none; white-space:nowrap; }
+  .pill.red { background:var(--tint); border-color:transparent; color:var(--red); }
+  .pill.tag { background:var(--red); border-color:var(--red); color:#fff; font-size:.72rem;
+               letter-spacing:.06em; text-transform:uppercase; padding:3px 10px; }
+  a.pill:hover { border-color:var(--red); }
+  .pill .dot { width:7px; height:7px; border-radius:50%; background:var(--red); }
+  .hero { background:linear-gradient(160deg, var(--card) 0%, var(--tint) 100%); border:1px solid var(--line);
+          border-radius:28px; padding:34px 36px 30px; margin:10px 0 0; box-shadow:0 18px 40px -28px rgba(80,30,20,.35); }
+  .hero h1 { margin:.35em 0 .25em; }
+  .hero .lead { margin:0 0 1em; }
+  .hero .ctas { margin:.6em 0 .2em; }
+  .hero .try { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:.8em 0 0; font-size:.92rem; color:var(--grey); }
+  .hero .try a.pill { font-weight:600; }
+  .hero .trust { margin:1.2em 0 0; padding-top:1em; border-top:1px dashed var(--line); }
+  .hero .trust .pill { font-weight:500; color:var(--grey); }
+  @media (max-width:560px) {
+    .hero { padding:22px 18px 20px; border-radius:20px; }
+    .hero h1 { font-size:2rem; }
+    .hero .lead { font-size:1.05rem; }
+  }
+  /* How it works: six framed tiles, each with its number in a badge. */
+  .tiles { list-style:none; counter-reset:step; padding:0; margin:.6em 0 1.4em; display:grid;
+           grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; }
+  .tiles li { counter-increment:step; position:relative; background:var(--card); border:1px solid var(--line);
+              border-radius:16px; padding:14px 16px 14px 58px; font-size:.95rem; line-height:1.45; margin:0; }
+  .tiles li::before { content:counter(step); position:absolute; left:14px; top:13px; width:30px; height:30px;
+                      border-radius:50%; background:var(--tint); color:var(--red); font-weight:700;
+                      display:flex; align-items:center; justify-content:center; }
+  .tiles strong { display:block; }
+  /* Screenshots framed as app windows, each with a pill label. */
+  .shots { grid-template-columns:repeat(2, 1fr); }
+  .shots figure:first-child { grid-column:1 / -1; }
+  @media (max-width:700px) { .shots { grid-template-columns:1fr; } }
+  .frame { background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+           box-shadow:0 14px 34px -24px rgba(80,30,20,.4); }
+  .frame .bar { display:flex; align-items:center; gap:6px; padding:9px 12px; border-bottom:1px solid var(--line); }
+  .frame .bar i { width:9px; height:9px; border-radius:50%; background:var(--line); }
+  .frame .bar .pill { margin-left:auto; font-size:.75rem; padding:2px 10px; }
+  .shots .frame img { border:0; border-radius:0; }
+  .shots figcaption { padding:0 4px; }
+  /* Worked out: the two inputs and what follows from them, as a row of pills. */
+  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:.6em 0 1em; }
+  .flow .arrow { color:var(--grey); }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:20px 24px; }
   .free { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:1em 0 .4em; }
-  .free .card { display:block; text-decoration:none; color:var(--ink); }
-  .free .card strong { color:var(--red); display:block; margin-bottom:.2em; }
+  .free .card { display:block; text-decoration:none; color:var(--ink); position:relative; transition:border-color .15s, transform .15s; }
+  .free .card:hover { border-color:var(--red); transform:translateY(-2px); }
+  .free .card strong { color:var(--red); display:block; margin:.5em 0 .2em; font-size:1.1rem; }
   .free .card span { color:var(--grey); font-size:.95rem; }
+  .free .card .pill.tag { color:#fff; font-size:.72rem; }
+  .free .card.has-art { padding-right:128px; min-height:150px; }
+  .free .card .art { position:absolute; right:20px; top:50%; transform:translateY(-50%); }
+  @media (max-width:420px) { .free .card.has-art { padding-right:100px; } .free .card .art { width:70px; height:70px; right:14px; } }
+  /* The hero's illustrated plan sits beside the text on wide screens only. */
+  .hero { display:grid; grid-template-columns:1fr; gap:10px 28px; align-items:center; }
+  .hero-art { display:none; }
+  @media (min-width:860px) {
+    .hero { grid-template-columns:minmax(0,1fr) 270px; }
+    .hero-art { display:block; }
+    .hero-art svg { width:100%; height:auto; display:block; }
+  }
+  .free .card .more { display:block; margin-top:.6em; color:var(--red); font-weight:600; font-size:.92rem; }
+  .plans .card.pro { border:2px solid var(--red); }
+  .plans .card .pill { margin-bottom:.4em; }
   .scope { color:var(--grey); font-size:.8rem; line-height:1.5; max-width:46em; margin:1.2em 0 0;
            padding-left:10px; border-left:2px solid var(--line); }
   footer { border-top:1px solid var(--line); margin-top:3em; padding:2em 0 3em; color:var(--grey); font-size:.95rem; }
   footer a { display:inline-block; margin-right:18px; padding:8px 0; }
   @media (prefers-color-scheme: dark) {
-    :root { --ink:#eef1f0; --grey:#9aa2a0; --line:#2c3138; --bg:#14161a; --red:#e07a70; }
+    :root { --ink:#eef1f0; --grey:#9aa2a0; --line:#2c3138; --bg:#14161a; --red:#e07a70; --card:#1b1e23; --tint:rgba(224,122,112,.12); }
     .card, .shots img, .ios-tip { background:#1b1e23; }
+    .pill.tag, .free .card .pill.tag { color:#14161a; }
+    .hero, .frame { box-shadow:none; }
     .btn { color:#14161a; } .btn.ghost { background:transparent; }
   }
 </style>
 <script src="/js/ads.js" async></script>
 <!-- nav-css -->
 <style>
-  /* Logo left, links, then the app button. On a phone the button sits beside the
-     logo and the links wrap onto their own row, so nothing is hidden off-screen. */
-  header.site { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; padding:18px 0 6px; }
+  /* Logo left, the tabs, then the app button. Each tab is a framed pill with its
+     own icon; the page you are on is filled. On a phone the button sits beside the
+     logo and the tabs become an even row of icon-over-label buttons. */
+  header.site { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:18px 0 8px; }
   header.site .brand { display:flex; align-items:center; gap:10px; font-weight:600; color:var(--red); font-size:1.05rem; text-decoration:none; margin-right:auto; }
   header.site .brand img { width:36px; height:36px; border-radius:8px; }
-  nav.top { display:flex; flex-wrap:wrap; align-items:center; gap:2px; order:2; }
-  nav.top a { display:inline-block; padding:8px 10px; border-radius:8px; color:var(--ink); text-decoration:none; font-size:.95rem; white-space:nowrap; }
-  nav.top a:hover { background:rgba(140,29,24,.08); }
-  nav.top a[aria-current="page"] { color:var(--red); font-weight:600; }
-  header.site .go { order:3; display:inline-block; background:var(--red); color:#fff; font-weight:600; text-decoration:none; padding:8px 14px; border-radius:8px; white-space:nowrap; font-size:.95rem; }
+  nav.top { display:flex; flex-wrap:wrap; align-items:center; gap:6px; order:2; }
+  nav.top a { display:inline-flex; align-items:center; gap:7px; padding:7px 14px 7px 11px; border-radius:999px;
+              border:1px solid var(--line); background:var(--card); color:var(--ink); text-decoration:none;
+              font-size:.93rem; font-weight:500; white-space:nowrap; box-shadow:0 1px 0 rgba(0,0,0,.03);
+              transition:border-color .15s, background .15s, transform .15s; }
+  nav.top a svg { color:var(--red); flex:none; }
+  nav.top a:hover { border-color:var(--red); transform:translateY(-1px); }
+  nav.top a[aria-current="page"] { background:var(--red); border-color:var(--red); color:#fff; font-weight:600; }
+  nav.top a[aria-current="page"] svg { color:#fff; }
+  header.site .go { order:3; display:inline-block; background:var(--red); color:#fff; font-weight:600; text-decoration:none; padding:8px 16px; border-radius:999px; white-space:nowrap; font-size:.95rem; }
   @media (max-width:640px) {
-    header.site { gap:6px 8px; }
+    header.site { gap:8px; }
     header.site .brand { font-size:.95rem; gap:8px; }
     header.site .brand img { width:32px; height:32px; }
     header.site .go { order:1; padding:7px 11px; font-size:.88rem; }
-    nav.top { order:2; width:100%; margin-left:-10px; }
+    nav.top { order:2; width:100%; display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:6px; }
+    nav.top a { flex-direction:column; justify-content:center; gap:3px; padding:8px 2px 7px; border-radius:14px;
+                font-size:.74rem; line-height:1.15; text-align:center; white-space:normal; }
+    nav.top a svg { width:20px; height:20px; }
   }
-  @media (prefers-color-scheme: dark) { header.site .go { color:#14161a; } nav.top a:hover { background:rgba(224,122,112,.12); } }
+  @media (prefers-color-scheme: dark) {
+    header.site .go, nav.top a[aria-current="page"] { color:#14161a; }
+    nav.top a[aria-current="page"] svg { color:#14161a; }
+  }
   footer a { display:inline-block; margin-right:18px; padding:8px 0; }
 </style>
 <!-- /nav-css -->
@@ -170,20 +248,78 @@
 <header class="site">
   <a class="brand" href="/"><img src="/img/icon.png" width="36" height="36" alt=""> Flying Stars Feng Shui</a>
   <nav class="top" aria-label="Main">
-    <a href="/guides/">Guides</a>
-    <a href="/flying-star-chart-2027/">2027 chart</a>
-    <a href="/kua-number-calculator/">Kua calculator</a>
-    <a href="/faq.html">Questions</a>
+    <a href="/guides/"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5c2.8-1.2 5.8-1.2 9 .8 3.2-2 6.2-2 9-.8v13c-2.8-1.2-5.8-1.2-9 .8-3.2-2-6.2-2-9-.8z"/><path d="M12 6.3v13"/></svg><span>Guides</span></a>
+    <a href="/flying-star-chart-2027/"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg><span>2027 chart</span></a>
+    <a href="/kua-number-calculator/"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span>Kua calculator</span></a>
+    <a href="/faq.html"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"/><path d="M10 7.8a2 2 0 1 1 2.6 1.9c-.4.2-.6.5-.6 1v.6"/><path d="M12 13.3h.01"/></svg><span>Questions</span></a>
   </nav>
   <a class="go" href="https://flyingstarsfengshui.net/app/">Open the app</a>
 </header>
 <!-- /nav -->
 
-<h1>A floor plan in,<br><em>a room-by-room study out</em></h1>
-<p class="lead">For feng shui consultants, and for anyone applying the classical method to their own home.</p>
+<section class="hero">
+<div class="hero-text">
+  <ul class="pills" aria-label="About Flying Stars">
+    <li class="pill red"><span class="dot"></span>Xuan Kong flying stars</li>
+    <li class="pill">Period 9</li>
+    <li class="pill">For consultants and homeowners</li>
+  </ul>
+  <h1>A floor plan in,<br><em>a room-by-room study out</em></h1>
+  <p class="lead">For feng shui consultants, and for anyone applying the classical method to their own home.</p>
+  <p class="ctas">
+    <a class="btn" href="https://flyingstarsfengshui.net/app/">Open the web app</a>
+    <a class="btn ghost" href="#pricing">See the plans</a>
+  </p>
+  <p class="try"><span class="pill tag">Free</span> No sign-up:
+    <a class="pill" href="/kua-number-calculator/">Work out your kua number →</a>
+    <a class="pill" href="/flying-star-chart-2027/">See the 2027 chart →</a>
+  </p>
+  <ul class="pills trust" aria-label="What to expect">
+    <li class="pill">Same building, same answer</li>
+    <li class="pill">The reason for every wall</li>
+    <li class="pill">One account on every device</li>
+  </ul>
+</div>
+<div class="hero-art" aria-hidden="true">
+  <!-- An illustrated plan: rooms, a bed and a desk, the nine-square grid and north.
+       Deliberately no numbers: every figure on the site comes from the engine. -->
+  <svg viewBox="0 0 270 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="30" width="258" height="250" rx="22" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+    <g stroke="var(--ink)" stroke-width="5">
+      <path d="M30 56h210v206H30z"/>
+    </g>
+    <g stroke="var(--ink)" stroke-width="3">
+      <path d="M128 56v62M128 148v38M30 186h64M126 186h114M180 186v76"/>
+    </g>
+    <g stroke="var(--bg)" stroke-width="6"><path d="M150 262h24M60 56h30M200 56h26M240 100v34"/></g>
+    <g stroke="var(--grey)" stroke-width="1.5"><path d="M60 56h30M200 56h26M240 100v34"/></g>
+    <g stroke="var(--grey)" stroke-width="1.5"><path d="M128 118a30 30 0 0 1 30 30M94 186a32 32 0 0 0 32-32"/></g>
+    <!-- bed -->
+    <rect x="46" y="74" width="54" height="70" rx="6" fill="var(--tint)" stroke="var(--red)" stroke-width="2"/>
+    <rect x="52" y="78" width="18" height="12" rx="3" fill="var(--card)" stroke="var(--red)" stroke-width="1.5"/>
+    <rect x="76" y="78" width="18" height="12" rx="3" fill="var(--card)" stroke="var(--red)" stroke-width="1.5"/>
+    <!-- desk and chair -->
+    <rect x="190" y="72" width="34" height="22" rx="4" fill="var(--tint)" stroke="var(--red)" stroke-width="2"/>
+    <circle cx="207" cy="106" r="8" fill="var(--card)" stroke="var(--red)" stroke-width="2"/>
+    <!-- sofa and table -->
+    <rect x="48" y="218" width="64" height="24" rx="8" fill="var(--card)" stroke="var(--grey)" stroke-width="2"/>
+    <circle cx="150" cy="222" r="14" fill="var(--card)" stroke="var(--grey)" stroke-width="2"/>
+    <!-- the nine sectors -->
+    <g stroke="var(--red)" stroke-width="1.6" stroke-dasharray="5 5" opacity=".75">
+      <path d="M100 56v206M170 56v206M30 125h210M30 194h210"/>
+    </g>
+    <circle cx="135" cy="159" r="5" fill="var(--red)"/>
+    <!-- north -->
+    <g transform="translate(135 12)">
+      <path d="M0 0l7 16-7-4-7 4z" fill="var(--red)"/>
+    </g>
+    <text x="150" y="25" font-size="12" font-weight="700" fill="var(--grey)" font-family="-apple-system,Segoe UI,Roboto,sans-serif">N</text>
+  </svg>
+</div>
+</section>
 
 <div class="steps-label">How it works</div>
-<ol class="steps-list">
+<ol class="tiles">
   <li><strong>Face out.</strong> Stand inside the front door, looking out. Take the compass reading.</li>
   <li><strong>Date the home.</strong> The date it was built or renovated sets the period.</li>
   <li><strong>Upload the plan.</strong> Fit the nine sectors to its walls.</li>
@@ -191,11 +327,6 @@
   <li><strong>Go room by room.</strong> Mark doors and windows. Place bed, desk and cooker.</li>
   <li><strong>Save the report.</strong> Reword any line first.</li>
 </ol>
-
-<p>
-  <a class="btn" href="https://flyingstarsfengshui.net/app/">Open the web app</a>
-  <a class="btn ghost" href="#pricing">See the plans</a>
-</p>
 <p class="ios-tip" id="ios-tip" hidden>On an iPhone or iPad? <a href="iphone.html">Add Flying Stars to
 your Home Screen</a> and it opens like any other app.</p>
 <p class="note">Works in any browser, and <a href="install.html">installs on iPhone, iPad, Mac, Android
@@ -213,23 +344,32 @@ Microsoft Store</a>.</p>
 
 <div class="shots">
   <figure>
-    <img src="img/plan.png" width="1200" height="990" alt="A floor plan with the nine flying star sectors fitted to the building, each carrying its mountain, water and sector star">
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><span class="pill">1 · The floor plan</span></div>
+    <img src="img/plan.png" width="1200" height="990" alt="A floor plan with the nine flying star sectors fitted to the building, each carrying its mountain, water and sector star"></div>
     <figcaption>The nine sectors fitted to the building by hand. Each one carries its mountain star,
     water star and sector star, worked out from the period and the entrance bearing.</figcaption>
   </figure>
   <figure>
-    <img src="img/room.png" width="1600" height="1000" loading="lazy" alt="A room page: the door and windows marked, and the bed and desk placed on the plan">
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><span class="pill">2 · Each room</span></div>
+    <img src="img/room.png" width="1600" height="1000" loading="lazy" alt="A room page: the door and windows marked, and the bed and desk placed on the plan"></div>
     <figcaption>A page for each room. Mark the door and the windows, place the bed, the desk, the
     cooker and the seats, and note who uses the room.</figcaption>
   </figure>
   <figure>
-    <img src="img/report.png" width="1600" height="683" loading="lazy" alt="The project sheet listing the floor plan, the people and each room page, ready to save as a report">
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><span class="pill">3 · The report</span></div>
+    <img src="img/report.png" width="1600" height="683" loading="lazy" alt="The project sheet listing the floor plan, the people and each room page, ready to save as a report"></div>
     <figcaption>The project sheet: every page in one place, in the order the report prints, ready to
     review and hand to the client.</figcaption>
   </figure>
 </div>
 
 <h2>Worked out, not invented</h2>
+<div class="panel">
+<div class="flow" aria-hidden="true">
+  <span class="pill">Bearing in degrees</span><span class="arrow">→</span><span class="pill">1 of 24 mountains</span>
+  <span class="pill">Completion date</span><span class="arrow">→</span><span class="pill">The period</span>
+  <span class="arrow">→</span><span class="pill red">All nine sectors</span>
+</div>
 <p>Every figure comes from the classical Xuan Kong flying star method. The bearing in degrees selects
 one of the twenty-four mountains, the completion date selects the period on the solar calendar, and
 the mountain, water and sector stars of all nine sectors follow from those two inputs. The same
@@ -237,12 +377,13 @@ building, entered by any two consultants, produces the same chart.</p>
 <p class="scope">Flying Stars applies the classical Xuan Kong method to your floor plan — the chart and every placement are calculated, not guessed. A floor plan cannot show everything: the land, the surroundings, the people. For important decisions, an experienced practitioner’s eye is worth having.</p>
 <p><a href="faq.html">Questions and answers</a>: how Flying Stars compares with a chart calculator or an AI
 chat, what you need to start, and what it does not do.</p>
+</div>
 
 <!-- tools -->
 <h2>Free tools</h2>
 <div class="free">
-  <a class="card" href="/flying-star-chart-2027/"><strong>2027 chart</strong><span>The nine numbers for 2027, where the 5 and the 2 fall, and what the app's rules add in each area.</span></a>
-  <a class="card" href="/kua-number-calculator/"><strong>Kua calculator</strong><span>Your kua number, your group, and your four best and four weaker directions, from your birth date.</span></a>
+  <a class="card has-art" href="/flying-star-chart-2027/"><svg class="art" viewBox="0 0 90 90" width="90" height="90" role="img" aria-label="The 2027 chart: south-east 8, south 4, south-west 6, east 7, centre 9, west 2, north-east 3, north 5, north-west 1"><g data-annual="2027" data-palace="SE" data-star="8"><rect x="1" y="1" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="15" y="21" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">8</text></g><g data-annual="2027" data-palace="S" data-star="4"><rect x="31" y="1" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="45" y="21" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">4</text></g><g data-annual="2027" data-palace="SW" data-star="6"><rect x="61" y="1" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="75" y="21" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">6</text></g><g data-annual="2027" data-palace="E" data-star="7"><rect x="1" y="31" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="15" y="51" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">7</text></g><g data-annual="2027" data-palace="C" data-star="9"><rect x="31" y="31" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="45" y="51" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">9</text></g><g data-annual="2027" data-palace="W" data-star="2"><rect x="61" y="31" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="75" y="51" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">2</text></g><g data-annual="2027" data-palace="NE" data-star="3"><rect x="1" y="61" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="15" y="81" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">3</text></g><g data-annual="2027" data-palace="N" data-star="5"><rect x="31" y="61" width="28" height="28" rx="5" fill="var(--red)" stroke="var(--line)"/><text x="45" y="81" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="#fff">5</text></g><g data-annual="2027" data-palace="NW" data-star="1"><rect x="61" y="61" width="28" height="28" rx="5" fill="var(--card)" stroke="var(--line)"/><text x="75" y="81" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="var(--ink)">1</text></g></svg><span class="pill tag">Free</span><strong>2027 chart</strong><span>The nine numbers for 2027, where the 5 and the 2 fall, and what the app's rules add in each area.</span><span class="more">Open →</span></a>
+  <a class="card has-art" href="/kua-number-calculator/"><svg class="art" viewBox="0 0 90 90" width="90" height="90" aria-hidden="true"><circle cx="45" cy="45" r="42" fill="var(--card)" stroke="var(--line)" stroke-width="2"/><line x1="45.0" y1="15.0" x2="45.0" y2="7.0" stroke="var(--grey)" stroke-width="2"/><line x1="68.3" y1="21.7" x2="71.9" y2="18.1" stroke="var(--grey)" stroke-width="1.2"/><line x1="75.0" y1="45.0" x2="83.0" y2="45.0" stroke="var(--grey)" stroke-width="2"/><line x1="68.3" y1="68.3" x2="71.9" y2="71.9" stroke="var(--grey)" stroke-width="1.2"/><line x1="45.0" y1="75.0" x2="45.0" y2="83.0" stroke="var(--grey)" stroke-width="2"/><line x1="21.7" y1="68.3" x2="18.1" y2="71.9" stroke="var(--grey)" stroke-width="1.2"/><line x1="15.0" y1="45.0" x2="7.0" y2="45.0" stroke="var(--grey)" stroke-width="2"/><line x1="21.7" y1="21.7" x2="18.1" y2="18.1" stroke="var(--grey)" stroke-width="1.2"/><text x="45" y="21" text-anchor="middle" font-size="10" font-weight="700" fill="var(--grey)">N</text><text x="71" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="var(--grey)">E</text><text x="45" y="77" text-anchor="middle" font-size="10" font-weight="700" fill="var(--grey)">S</text><text x="19" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="var(--grey)">W</text><path d="M45 26 L51 45 L45 64 L39 45 Z" fill="var(--grey)" opacity=".35"/><path d="M45 26 L51 45 L39 45 Z" fill="var(--red)"/><circle cx="45" cy="45" r="3" fill="var(--ink)"/></svg><span class="pill tag">Free</span><strong>Kua calculator</strong><span>Your kua number, your group, and your four best and four weaker directions, from your birth date.</span><span class="more">Open →</span></a>
 </div>
 <p class="note"><a href="/guides/">All guides and tools</a></p>
 <!-- /tools -->
@@ -250,6 +391,7 @@ chat, what you need to start, and what it does not do.</p>
 <h2 id="pricing">Plans and prices</h2>
 <div class="plans">
   <div class="card">
+    <span class="pill">No card needed</span>
     <h3>Free</h3>
     <p class="price">$0</p>
     <ul>
@@ -259,7 +401,8 @@ chat, what you need to start, and what it does not do.</p>
       <li>One report, kept as saved</li>
     </ul>
   </div>
-  <div class="card">
+  <div class="card pro">
+    <span class="pill red">Cancel at any time</span>
     <h3>Pro</h3>
     <p class="price">$19.99 <small>a month</small></p>
     <p class="price">$99.99 <small>a year</small></p>
