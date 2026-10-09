@@ -43,6 +43,7 @@
 - [Website](https://flyingstarsfengshui.net/): what it does, screenshots, plans and prices
 - [Questions and answers](https://flyingstarsfengshui.net/faq.html): the method, how it compares with a chart calculator or an AI chat, what you need, what it does not do
 - [Kua number calculator](https://flyingstarsfengshui.net/kua-number-calculator/): free, no sign-up; a birth date gives the kua number, the East or West group, and the four best and four weaker directions, worked out by the same code as the app
+- [Flying star chart 2027](https://flyingstarsfengshui.net/flying-star-chart-2027/): free; the yearly numbers for 2027 (9 in the centre, 5 in the north, 2 in the west, from 4 February 2027), with what each area's number stands for by the app's rules
 - [Guides and free tools](https://flyingstarsfengshui.net/guides/): plain guides to flying star feng shui and the free tools
 - [Web app](https://flyingstarsfengshui.net/app/): works in any browser
 - [Install on any device](https://flyingstarsfengshui.net/install.html): iPhone, iPad, Mac, Android and Chromebook install the web app from the browser; Windows has the Microsoft Store
