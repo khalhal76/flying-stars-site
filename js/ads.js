@@ -58,19 +58,23 @@
   gtag('config', TAG);
 
   // Google's library is the heaviest thing on the page (about 150 KB and 300 ms of
-  // main-thread work), so it loads once the page is up and the browser is idle.
-  // Everything above is already queued in dataLayer and is sent when it arrives;
-  // the ad click id stays in the address, so nothing is lost by waiting.
+  // main-thread work), so it waits until the visitor first scrolls, taps or types,
+  // or 4 seconds after the page has loaded, whichever comes first. Everything above
+  // is already queued in dataLayer and is sent when it arrives, and the ad click id
+  // stays in the address, so nothing is lost by waiting.
+  var loaded = false;
+  var EVENTS = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
   function load() {
+    if (loaded) return;
+    loaded = true;
+    EVENTS.forEach(function (e) { window.removeEventListener(e, load); });
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + TAG;
     document.head.appendChild(s);
   }
-  function later() {
-    if ('requestIdleCallback' in window) window.requestIdleCallback(load, { timeout: 3000 });
-    else setTimeout(load, 1500);
-  }
+  EVENTS.forEach(function (e) { window.addEventListener(e, load, { once: true, passive: true }); });
+  function later() { setTimeout(load, 4000); }
   if (document.readyState === 'complete') later();
   else window.addEventListener('load', later);
 
