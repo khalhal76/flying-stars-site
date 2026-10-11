@@ -50,54 +50,37 @@
 <script src="/js/ads.js" async></script>
 <!-- nav-css -->
 <style>
-  /* Logo left, the tabs, then the app button. Each tab is a framed pill with its
-     own icon; the page you are on is filled. On a phone the button sits beside the
-     logo and the tabs become an even row of icon-over-label buttons. */
-  header.site { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:18px 0 8px; }
-  header.site .brand { display:flex; align-items:center; gap:10px; font-weight:600; color:var(--red); font-size:1.05rem; text-decoration:none; margin-right:auto; }
-  header.site .brand img { width:36px; height:36px; border-radius:8px; }
-  nav.top { display:flex; flex-wrap:wrap; align-items:center; gap:6px; order:2; }
-  nav.top a { display:inline-flex; align-items:center; gap:7px; padding:7px 14px 7px 11px; border-radius:999px;
-              border:1px solid var(--line); background:var(--card); color:var(--ink); text-decoration:none;
-              font-size:.93rem; font-weight:500; white-space:nowrap; box-shadow:0 1px 0 rgba(0,0,0,.03);
-              transition:border-color .15s, background .15s, transform .15s; }
-  nav.top a .ic { flex:none; width:24px; height:24px; border-radius:50%; margin:-3px 0; }
-  nav.top a:hover { border-color:var(--red); transform:translateY(-1px); }
-  nav.top a[aria-current="page"] { background:var(--red); border-color:var(--red); color:#fff; font-weight:600; }
-  nav.top a[aria-current="page"] .ic { box-shadow:0 0 0 2px rgba(255,255,255,.85); }
-  /* The one gold element on the site: the way into the app. Dark red text on gold
-     (about 5.5:1), not white, which would fail contrast on a light gold. */
-  header.site .go { order:3; display:inline-block; color:#5a1410; font-weight:700; text-decoration:none;
-                    padding:8px 18px; border-radius:999px; white-space:nowrap; font-size:.95rem;
-                    /* Gold leaf painted in Canva (img/gold.jpg), over a gradient that shows
-                       while it loads. A soft band of light sweeps across now and then. */
-                    background:#e2bd5f url(/img/gold.jpg) center / cover;
-                    border:1px solid #b88a2e; position:relative; overflow:hidden; isolation:isolate;
-                    box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 4px 12px -6px rgba(140,100,20,.7);
-                    transition:transform .15s, box-shadow .15s; }
-  header.site .go::after { content:""; position:absolute; inset:-2px auto -2px 0; width:45%; z-index:-1;
-                           background:linear-gradient(100deg, transparent 0%, rgba(255,250,225,.75) 50%, transparent 100%);
-                           transform:translateX(-160%) skewX(-18deg); animation:fs-shimmer 5s ease-in-out 1.2s infinite; }
-  @keyframes fs-shimmer { 0%, 62% { transform:translateX(-160%) skewX(-18deg); } 100% { transform:translateX(330%) skewX(-18deg); } }
-  @media (prefers-reduced-motion: reduce) { header.site .go::after { animation:none; display:none; } }
-  header.site .go:hover { transform:translateY(-1px); box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 8px 18px -8px rgba(140,100,20,.8); }
-  /* Always two rows: the logo and the gold app button on top, the tabs beneath.
-     The tabs and the button together are wider than the page column, so a single
-     row would break at some width; two rows look the same everywhere. */
-  header.site .go { order:1; }
-  nav.top { order:2; width:100%; }
-  @media (max-width:640px) {
-    header.site { gap:8px; }
-    header.site .brand { font-size:.95rem; gap:8px; }
-    header.site .brand img { width:32px; height:32px; }
-    header.site .go { padding:7px 11px; font-size:.88rem; }
-    nav.top { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:6px; }
-    nav.top a { flex-direction:column; justify-content:center; gap:3px; padding:8px 2px 7px; border-radius:14px;
-                font-size:.74rem; line-height:1.15; text-align:center; white-space:normal; }
-    nav.top a .ic { width:28px; height:28px; margin:0; }
-  }
-  @media (prefers-color-scheme: dark) {
-    nav.top a[aria-current="page"] { color:#14161a; }
+  /* White site, one top strip: logo left, the links, then the app button. The strip
+     is full width and stays at the top while the page scrolls. On a narrow screen
+     the links become a row that slides sideways under the logo and button. */
+  html:root { --bg:#fff; --card:#fff; --ink:#23211f; --grey:#6b665f; --line:#ece7e0; --red:#8c1d18; --tint:rgba(140,29,24,.06); color-scheme:light; }
+  html, body { overflow-x:clip; }
+  body { background:#fff; }
+  .btn, .tool button { color:#fff; }
+  .hero { background:#fff; box-shadow:none; }
+  h1 { font-weight:400; letter-spacing:.005em; }
+  h2 { font-weight:400; }
+  header.site { position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:10px 28px;
+                margin:0 calc(50% - 50vw) 8px; padding:0 max(20px, calc(50vw - 540px));
+                background:rgba(255,255,255,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); min-height:64px; }
+  header.site .brand { display:flex; align-items:center; gap:10px; font-family:Georgia,serif; font-size:1.12rem; font-weight:400;
+                       color:var(--ink); text-decoration:none; white-space:nowrap; }
+  header.site .brand img { width:30px; height:30px; border-radius:6px; }
+  nav.top { display:flex; align-items:stretch; gap:2px; margin-left:auto; }
+  nav.top a { display:flex; align-items:center; padding:0 12px; min-height:64px; font-size:.92rem; letter-spacing:.01em;
+              color:var(--grey); text-decoration:none; white-space:nowrap; border-bottom:2px solid transparent; margin-bottom:-1px; }
+  nav.top a:hover { color:var(--ink); }
+  nav.top a[aria-current="page"] { color:var(--ink); border-bottom-color:var(--red); }
+  header.site .go { display:inline-block; padding:9px 18px; border-radius:2px; background:var(--red); color:#fff; font-size:.9rem;
+                    font-weight:600; letter-spacing:.03em; text-decoration:none; white-space:nowrap; }
+  header.site .go:hover { background:#6f1713; }
+  @media (max-width:900px) {
+    header.site { flex-wrap:wrap; gap:0 12px; padding:0 20px; min-height:0; }
+    header.site .brand { order:1; margin-right:auto; padding:12px 0; }
+    header.site .go { order:2; padding:7px 14px; }
+    nav.top { order:3; width:100%; margin:0 -20px; padding:0 14px; overflow-x:auto; scrollbar-width:none; border-top:1px solid var(--line); }
+    nav.top::-webkit-scrollbar { display:none; }
+    nav.top a { min-height:44px; padding:0 12px; }
   }
   footer a { display:inline-block; margin-right:18px; padding:8px 0; }
 </style>
@@ -110,12 +93,13 @@
 <header class="site">
   <a class="brand" href="/"><img src="/img/icon.png" width="36" height="36" alt=""> Flying Stars Feng Shui</a>
   <nav class="top" aria-label="Main">
-    <a href="/guides/"><img class="ic" src="/img/icons/guides.jpg" width="24" height="24" alt="" loading="lazy" decoding="async"><span>Guides</span></a>
-    <a href="/facing-direction/"><img class="ic" src="/img/icons/chart.jpg" width="24" height="24" alt="" loading="lazy" decoding="async"><span>Facing direction</span></a>
-    <a href="/flying-star-chart-2027/"><img class="ic" src="/img/icons/chart.jpg" width="24" height="24" alt="" loading="lazy" decoding="async"><span>2027 chart</span></a>
-    <a href="/kua-number-calculator/"><img class="ic" src="/img/icons/compass.jpg" width="24" height="24" alt="" loading="lazy" decoding="async"><span>Kua calculator</span></a>
-    <a href="/period-9-feng-shui/"><img class="ic" src="/img/icons/chart.jpg" width="24" height="24" alt="" loading="lazy" decoding="async"><span>Period 9</span></a>
-    <a href="/faq.html"><img class="ic" src="/img/icons/questions.jpg" width="24" height="24" alt="" loading="lazy" decoding="async"><span>Questions</span></a>
+    <a href="/guides/">Guides</a>
+    <a href="/facing-direction/">Facing direction</a>
+    <a href="/flying-star-chart-2027/">2027 chart</a>
+    <a href="/kua-number-calculator/">Kua calculator</a>
+    <a href="/period-9-feng-shui/">Period 9</a>
+    <a href="/faq.html">Questions</a>
+    <a href="/about.html">About</a>
   </nav>
   <a class="go" href="https://flyingstarsfengshui.net/app/">Open the app</a>
 </header>
@@ -156,6 +140,7 @@ menu. Safari is the simplest.</p>
   <a href="/">Home</a>
   <a href="/guides/">Guides</a>
   <a href="/faq.html">Questions</a>
+  <a href="/about.html">About</a>
   <a href="/install.html">Install</a>
   <a href="/terms.html">Terms of use</a>
   <a href="/privacy.html">Privacy policy</a>
